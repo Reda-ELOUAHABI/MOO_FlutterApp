@@ -50,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   dynamic data;
   String data1 = "Hi";
+  int i = 0;
   void _search() {
     String url = 'https://api.github.com/';
     print(url);
@@ -57,7 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         this.data = json.decode(response.body);
         data1 = data.toString();
+        data1 = data1.split("")[i].toString();
         print(data1);
+        i++;
       });
 
       print(data[0]);
