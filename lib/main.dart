@@ -52,18 +52,21 @@ class _MyHomePageState extends State<MyHomePage> {
   String data1 = "Hi";
   int i = 0;
   void _search() {
-    String url = 'https://api.github.com/';
+    String url = 'http://172.16.1.203:4000/';
     print(url);
     http.get(Uri.parse(url)).then((response) {
       setState(() {
         this.data = json.decode(response.body);
         data1 = data.toString();
-        data1 = data1.split("")[i].toString();
-        print(data1);
+        data1 = data1.split(" ")[i].toString();
+        print(data["nom"]);
         i++;
+        if(i==5){
+          i=0;
+        }
+        print(i);
       });
-
-      print(data[0]);
+      // print(data[0]);
     }).catchError((onError) {
       print(onError);
     });
@@ -89,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }),
             Text(
               data1,
+              style: TextStyle(fontSize: 25),
             ),
           ],
         ),
